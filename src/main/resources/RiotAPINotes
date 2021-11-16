@@ -10,3 +10,21 @@ Giver mastery på alle champs en bruger har spillet
 
 http://ddragon.leagueoflegends.com/cdn/11.22.1/data/en_US/champion.json
 Giver alle Champions
+
+https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/{PUUID HERE}/ids?start=0&count=100&api_key={API KEY HERE}
+Giver et String Array af MatchID'er
+
+https://europe.api.riotgames.com/lol/match/v5/matches/{MatchID}?api_key={API KEY HERE}
+Giver ekstremt meget data om en match
+
+
+Eksemple Summoner man kan bruge:
+{
+"id":"2b6YuMYxzzSOnNfcb5t2qcEKWdnb_uqofOJHHFFJALA2-V8",
+"accountId":"ymByQirnL_d01fSJKfrE2o4VsDhAGl_Hu2d6olUBDuldHA",
+"puuid":"iSBhvPh_hcssGv_TIkiAfpS987XcKv_EDOlyYaqbeCCRQSZb64JAz84fGysry7BaeiRlIipyENNkOg",
+"name":"Futjee",
+"profileIconId":4449,
+"revisionDate":1636668177000,
+"summonerLevel":208
+}
