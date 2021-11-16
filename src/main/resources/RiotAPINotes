@@ -5,5 +5,8 @@ Giver basic info (id'er osv.) om en spiller blandt andet et encryptedSummonerId.
 https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/{encryptedSummonerId}?api_key={API KEY HERE}
 (giver spillerens Rank i flex og solo/duo)
 
+https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/{encryptedSummonerId}?api_key={API KEY HERE}
+Giver mastery på alle champs en bruger har spillet
+
 http://ddragon.leagueoflegends.com/cdn/11.22.1/data/en_US/champion.json
 Giver alle Champions
