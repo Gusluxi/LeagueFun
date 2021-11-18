@@ -1,6 +1,7 @@
 package dk.gusfreddy.leaguefun.models;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -29,5 +30,11 @@ public class Match {
 
     @Column
     private String gameComment;
+
+    @ManyToOne
+    @JoinColumn(name = "summoner_id")
+    @Nullable
+    private Summoner summoner;
+
 
 }

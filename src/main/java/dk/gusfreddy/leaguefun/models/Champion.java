@@ -1,6 +1,7 @@
 package dk.gusfreddy.leaguefun.models;
 
 import lombok.Data;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 
@@ -21,7 +22,9 @@ public class Champion {
     @Column
     private int championLevel;
 
-    @Column
-    private String summonerId;
+    @ManyToOne
+    @JoinColumn(name = "summoner_id")
+    @Nullable
+    private Summoner summoner;
 
 }
