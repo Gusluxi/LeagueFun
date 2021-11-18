@@ -1,10 +1,27 @@
 package dk.gusfreddy.leaguefun.models;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+
+@Data
+@Table(name="champions")
+@Entity
 public class Champion {
 
-    Long id;
-    int championId;
-    int championLevel;
-    String summonerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    private Long id;
+
+    @Column
+    private int championId;
+
+    @Column
+    private int championLevel;
+
+    @Column
+    private String summonerId;
 
 }
