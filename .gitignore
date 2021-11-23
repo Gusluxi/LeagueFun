@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 !/src/main/java/dk/gusfreddy/leaguefun/APIKey/RiotDevAPIKey.java
+/src/main/resources/templates/apikey.js
