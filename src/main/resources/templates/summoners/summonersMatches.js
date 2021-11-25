@@ -12,9 +12,8 @@ fetch(localurl + "/summoners/" + summonerId)
     });
 
 
-
 function fetchSummonersMatches(summoner){
-    fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + summoner.puuId + "/ids?start=0&count=2&api_key=" + apikey)
+    fetch("https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/" + summoner.puuId + "/ids?start=0&count=5&api_key=" + apikey)
         .then(response => response.json())
         .then(matchIds => {
             matchIds.map(showMatches)
@@ -37,21 +36,39 @@ function showMatches(matchId){
 }
 
 function constructMatchDiv(divElement, match){
+     let chosenParticipant;
+     match.info.participants.map(paticipant => {
+         if (paticipant.summonerId === chosenSummoner.summonerId) {
+             chosenParticipant = paticipant;
+         }
+     })
+
     divElement.innerHTML=`<div>
     <p>Gametype ${match.info.gameMode}</p>
     <p>Gametime ${match.info.gameDuration}</p>
-    <p>Champion ${match.info.gameMode}</p>
-    <p>Win/Loss ${match.info.gameMode}</p>
-    <p>Level ${match.info.gameMode}</p>
-    <p>Kills ${match.info.gameMode}</p>
-    <p>Deaths ${match.info.gameMode}</p>
-    <p>Assists ${match.info.gameMode}</p>
-    <p>Minion Kills ${match.info.gameMode}</p>
-    <p>Participants ${match.info.gameMode}</p>
+    <img src="${championImageUrlFirst}${chosenParticipant.championName}${championImageUrlSecond}">
+    <p>Champion ${chosenParticipant.championName}</p>
+    <p>Win/Loss ${chosenParticipant.win}</p>
+    <p>Level ${chosenParticipant.champLevel}</p>
+    <p>Kills ${chosenParticipant.kills}</p>
+    <p>Deaths ${chosenParticipant.deaths}</p>
+    <p>Assists ${chosenParticipant.assists}</p>
+    <p>Minion Kills ${chosenParticipant.totalMinionsKilled}</p>
+    <p>Participants: ${match.info.participants[0].summonerName},
+    ${match.info.participants[1].summonerName},
+    ${match.info.participants[2].summonerName},
+    ${match.info.participants[3].summonerName},
+    ${match.info.participants[4].summonerName},
+    ${match.info.participants[5].summonerName},
+    ${match.info.participants[6].summonerName},
+    ${match.info.participants[7].summonerName},
+    ${match.info.participants[8].summonerName},
+    ${match.info.participants[9].summonerName}.
+    </p>
     <button onclick="removeGalleryForm()">Cancel</button>
     <button onclick="createGallery()">Create A New Gallery</button>
 </div>`
-};
+}
 
 
 
