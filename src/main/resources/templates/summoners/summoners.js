@@ -47,12 +47,9 @@ function saveSummoner(summoner){
         method: "POST",
         headers: { "Content-type": "application/json; charset=UTF-8" },
         body: JSON.stringify(summonerToSave)
-    }).then(response => {
-        if (response.status === 200) {
-            addSummonerToDiv(summonerToSave);
-        } else {
-            console.log("summoner not created", respone.status);
-        }
+    }).then(response => response.json())
+        .then(summoner => {
+            addSummonerToDiv(summoner);
     })
         .catch(error => console.log("network error" + error));
 }
