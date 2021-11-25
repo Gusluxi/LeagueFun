@@ -9,6 +9,7 @@ fetch(localurl + "/summoners")
 
 function addSummonerToDiv(summoner){
     const selectSummonerToDiv = document.createElement("div");
+    selectSummonerToDiv.id=summoner.id;
     summonerDiv.appendChild(selectSummonerToDiv);
     constructSummoner(selectSummonerToDiv, summoner);
 }
@@ -20,6 +21,7 @@ function constructSummoner(divElement, summoner){
     ${escapeHTML(summoner.name)}
     </h1>
     </a>
+    <button onclick="deleteSummoner(${summoner.id})">❌</button>
     `;
 }
 
@@ -52,4 +54,16 @@ function saveSummoner(summoner){
             addSummonerToDiv(summoner);
     })
         .catch(error => console.log("network error" + error));
+}
+
+function deleteSummoner(summonerId) {
+    fetch(localurl + "/summoners/" + summonerId, {
+        method: "DELETE"
+    }).then(response => {
+        if (response.status === 200) {
+            document.getElementById(summonerId).remove();
+        } else {
+            console.log(response.status);
+        }
+    });
 }
