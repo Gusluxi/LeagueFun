@@ -21,9 +21,8 @@ public class Match {
     @Column
     private boolean matchWon;
 
-    @Enumerated(value = EnumType.STRING)
     @Column
-    private GameType gameType;
+    private String gameType;
 
     @Column
     private int teammateSaltLevel;

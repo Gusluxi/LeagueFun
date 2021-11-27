@@ -1,8 +1,8 @@
 .single-match-card {
-    background-color: aquamarine;
-    display: flex;
+    background-color: #c5ded2;
     margin: 10px;
     padding: 10px;
+    display: flex;
 }
 .single-match-card img {
     float:left;
@@ -12,21 +12,19 @@
 }
 
 .match-info-wrapper {
-    flex-grow:0.3;
-    width: 50px;
+    width: 150px;
     margin-top: 10px;
     margin-left: 50px;
+    margin-right: 50px;
 }
 
 .player-info-wrapper {
-    flex-grow:0.3;
-    width: 200px;
-    margin-top: 2vh;
+    width: 350px;
+    margin-top: 20px;
 }
 
 .participants-wrapper {
-    flex-grow:1;
-    width: 400px;
+    width: 600px;
     display: flex;
     line-height: 1.5em;
     margin-top: 1.7vh;
@@ -49,7 +47,7 @@
 
 .team-two-kda {
     text-align:left;
-    width: 150px;
+    width: 100px;
 }
 
 .team-splitter {
@@ -60,3 +58,13 @@
     margin-left: 20px;
 
 }
+
+
+.local-match-saving {
+    flex-grow:1;
+    max-width: 400px;
+}
+.edit-button {
+    float: right;
+}
+

@@ -1,0 +1,15 @@
+.summoner-card {
+    display: flex;
+    font-size: 1.9em;
+    margin: 10px;
+}
+
+#summoner-wrapper {
+    margin:50px;
+    background-color: #c5ded2;
+}
+
+.summoner-name {
+    margin-left: 5px;
+    width: 200px;
+}

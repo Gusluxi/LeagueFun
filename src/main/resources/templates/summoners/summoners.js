@@ -16,13 +16,13 @@ function addSummonerToDiv(summoner){
 
 function constructSummoner(divElement, summoner){
     divElement.innerHTML = `
-    <a href="./summonersMatches.html?summonerId=${summoner.id}">
-    <h1>
-    ${escapeHTML(summoner.name)}
-    </h1>
-    </a>
+    <div class="summoner-card">
+    <b>Summoner: </b>
+    
+    <div class="summoner-name"><a href="./summonersMatches.html?summonerId=${summoner.id}">${escapeHTML(summoner.name)}</a></div>
+    
     <button onclick="deleteSummoner(${summoner.id})">❌</button>
-    `;
+    </div>`;
 }
 
 document.getElementById("search-for-summoner").addEventListener("click", searchForSummoner);
