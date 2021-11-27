@@ -1,9 +1,12 @@
 package dk.gusfreddy.leaguefun.models;
 
 public enum GameType {
+    CLASSIC,
     ARAM,
-    NORMAL,
-    SOLO,
-    FLEX,
-    OTHER
+    TUTORIAL,
+    URF,
+    ONEFORALL,
+    KINGPORO,
+    NEXUSBLITZ,
+    ULTBOOK
 }
