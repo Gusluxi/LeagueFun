@@ -131,11 +131,11 @@ function showMatchForm(match, chosenParticipant, localMatchFound) {
         })
     document.getElementById(`update-saved-matches-${match.metadata.matchId}`)
         .addEventListener("click",() => {
-            saveToDatabase(match, chosenParticipant, localMatchFound, savedMatchesDiv)
+            saveMatchToDB(match, chosenParticipant, localMatchFound, savedMatchesDiv)
         })
 }
 
-function saveToDatabase(match, chosenSummoner, localMatchFound, dataDiv) {
+function saveMatchToDB(match, chosenSummoner, localMatchFound, dataDiv) {
 
     if (localMatchFound) {
         const matchToUpdate = {

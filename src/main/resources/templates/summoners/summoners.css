@@ -1,6 +1,6 @@
 
 .search-bar {
-    width: 30%;
+    width: 70vh;
     margin: auto;
     padding-top: 30px;
     padding-bottom: 10px;
@@ -25,7 +25,7 @@
 }
 
 #summoner-wrapper {
-    width: 60%;
+    width: 120vh;
     margin: auto;
     padding: 5px;
     background-color: #697378;
