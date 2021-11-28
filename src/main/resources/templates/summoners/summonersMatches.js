@@ -26,6 +26,7 @@ function fetchSummonersMatches(summoner){
                         .then(response => response.json())
                 )
             });
+            +
             Promise.all(promises).then(matches => {
                 matches.map(addMatchToDiv)
         })

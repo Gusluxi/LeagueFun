@@ -21,6 +21,7 @@ public class Champions {
         return champions.findById(id).get();
     }
 
+
     @PostMapping("/champions")
     public Champion addChampion(@RequestBody Champion newChamp) {
         // don't allow the client to overwrite the id
@@ -43,7 +44,6 @@ public class Champions {
     public String patchChampById(@PathVariable Long id, @RequestBody Champion champToUpdateWith) {
         return champions.findById(id).map(foundChampion -> {
             if (champToUpdateWith.getChampionId() != 0) foundChampion.setChampionId(champToUpdateWith.getChampionId());
-            if (champToUpdateWith.getChampionLevel() != 0) foundChampion.setChampionLevel(champToUpdateWith.getChampionLevel());
             champions.save(foundChampion);
             return "Champion updated";
         }).orElse("Champion not found");
