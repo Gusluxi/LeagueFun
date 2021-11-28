@@ -20,11 +20,14 @@ public class Champion {
     private int championId;
 
     @Column
-    private int championLevel;
+    private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "summoner_id")
-    @Nullable
-    private Summoner summoner;
+    @Column
+    private String championTitle;
 
+    @Column
+    private String championParType;
+
+    @Column
+    private String championComment;
 }
