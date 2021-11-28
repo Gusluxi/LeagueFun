@@ -1,0 +1,23 @@
+#all-saved-matches {
+    display: flex;
+    margin:10px;
+}
+
+.saved-match-card {
+    flex-grow:1;
+    width: 300px;
+    height: 560px;
+    background-color:#697378;
+    color: #e8e8e8;
+    margin: 10px;
+    padding: 10px;
+}
+
+.filter-matches {
+    margin-left: 20px;
+    padding-top: 20px;
+}
+.filter-matches input {
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 0.8em;
+}

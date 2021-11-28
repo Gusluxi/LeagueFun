@@ -1,35 +1,57 @@
 const matchesDiv = document.getElementById("all-saved-matches");
+let savedMatches;
 
 fetch(localurl + "/matches")
     .then(response => response.json())
     .then(matches => {
-        matches.map(addMatchToDiv);
+        savedMatches = matches;
+        matches.map(constructMatch);
     })
 
-function addMatchToDiv(match){
 
+function constructMatch(match) {
     const matchDivElement = document.createElement("div");
     matchDivElement.id=match.id;
-    matchesDiv.appendChild(matchDivElement);
-    constructMatch(matchDivElement, match);
-}
 
-function constructMatch(divElement, match) {
-    divElement.innerHTML = `
-     <div class="single-match-card">
-    <div class="match-info-wrapper">
+    let gameResult;
+    if (match.matchWon) {
+        gameResult = "Victory";
+    } else {
+        gameResult = "Loss";
+    }
+
+    matchDivElement.innerHTML = `
+     <div class="saved-match-card">
+    <div class="saved-match-info-wrapper">
         <h1>${gameResult}</h1>
         <h4>
-        Gametype ${match.info.gameMode}<br>
-        Gametime ${Math.floor(match.info.gameDuration/60)}.${match.info.gameDuration-Math.floor(match.info.gameDuration/60)*60}
+        Gametype ${match.gameType}<br>
+        Summoner ${match.summoner.name}<br>
         </h4>
     </div>
-    <div class="player-info-wrapper">
-        <img src="${championImageUrlFirst}${chosenParticipant.championName}${championImageUrlSecond}">
-        <p>${chosenParticipant.championName} lvl:${chosenParticipant.champLevel}</p>
+    <div class="saved-player-info-wrapper">
+        <img src="${championImageUrlFirst}${match.championName}${championImageUrlSecond}">
+        <p>${match.championName} lvl:${match.championLevel}</p>
         <p>K / D / A</p>
-        <p>${chosenParticipant.kills} / ${chosenParticipant.deaths} / ${chosenParticipant.assists}</p>
-        <p>Minions: ${chosenParticipant.totalMinionsKilled}</p>
+        <p>${match.kills} / ${match.deaths} / ${match.assists}</p>
+        <p>Minions: ${match.minionKills}</p>
     </div>
-    `
+    <div class="saved-match-custom-wrapper">
+        <p>
+        Comment: ${match.gameComment}<br>
+        Teammates Salt Level: ${match.teammateSaltLevel}%
+        </p>
+        
+    </div>
+    `;
+    matchesDiv.appendChild(matchDivElement);
 }
+
+function searchHandler(event) {
+    matchesDiv.innerHTML = "";
+    const searchTerm = event.target.value.toLowerCase();
+    savedMatches.filter(match => match.summoner.name.toLowerCase().includes(searchTerm))
+        .map(constructMatch);
+}
+
+document.getElementById("filter-input").addEventListener("input",searchHandler)
