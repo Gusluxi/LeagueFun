@@ -1,6 +1,7 @@
 #all-saved-matches {
     display: flex;
     margin:10px;
+    flex-wrap:wrap;
 }
 
 .saved-match-card {

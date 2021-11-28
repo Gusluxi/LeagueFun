@@ -1,8 +1,25 @@
-.champion-card{
+#champion-wrapper{
     display:flex;
-    width: 300px;
+    flex-wrap:wrap;
+    margin: 10px;
+    width: 100%;
 }
 
-.champion-header{
+.champion-card{
     flex-grow:1;
+    width: 220px;
+    height: 400px;
+    background-color:#697378;
+    color: #e8e8e8;
+    margin: 10px;
+    padding: 10px;
+}
+
+.search-bar {
+    margin-left: 20px;
+    padding-top: 20px;
+}
+.search-bar input {
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 0.8em;
 }

@@ -29,5 +29,5 @@ public class Champion {
     private String championParType;
 
     @Column
-    private String championComment;
+    private String championImageName;
 }

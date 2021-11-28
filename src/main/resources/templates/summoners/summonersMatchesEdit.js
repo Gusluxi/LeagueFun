@@ -97,7 +97,7 @@ function showMatchForm(match, chosenParticipant, localMatchFound) {
     const savedMatchesDiv = document.getElementById("match-saving-"+match.metadata.matchId);
     if (!localMatchFound) {
         savedMatchesDiv.innerHTML = `
-            <textarea class="textarea-input" id="add-comment-${match.metadata.matchId}" cols="40" rows="4" placeholder="Game Comment"></textarea><br>
+            <textarea class="textarea-input" id="add-comment-${match.metadata.matchId}" cols="44" rows="4" maxlength="200" placeholder="Game Comment"></textarea><br>
             <input id="add-salt-level-${match.metadata.matchId}" type="range" min="0" max="100" value="50"/>
             <div>Teammates Tilt Level: <span id="slider-output-${match.metadata.matchId}"></span>% 
             <button class="confirm-button" id="update-saved-matches-${match.metadata.matchId}"">Save</button>

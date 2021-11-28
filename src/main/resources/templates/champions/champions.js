@@ -2,13 +2,17 @@ const championDiv = document.getElementById("champion-wrapper");
 const searchChampionInput = document.getElementById("champion-name-input");
 let savedChampions;
 
-
+fetchChamps();
+function fetchChamps() {
 fetch(localurl + "/champions")
     .then(response => response.json())
     .then(champions => {
         savedChampions = champions;
+        championDiv.innerHTML= "";
         champions.map(addChampionToDiv);
     })
+}
+
 
 document.getElementById("search-for-champion").addEventListener("click", searchForChampion);
 
@@ -17,6 +21,7 @@ function searchForChampion(){
     fetch("http://ddragon.leagueoflegends.com/cdn/11.22.1/data/en_US/champion.json")
         .then(response => response.json())
         .then(champions => {
+            console.log(champions)
             for (const key in champions.data) {
                     let championNameKey = `${key}`
                     //console.log(championNameKey);
@@ -31,8 +36,9 @@ function searchForChampion(){
                         const champData = Object.values(champion.data)
                         const championToSave = {
                             championId: champData[0].key,
-                            name: champData[0].id,
+                            name: champData[0].name,
                             championTitle: champData[0].title,
+                            championImageName: champData[0].id,
                             championParType: champData[0].partype
                         }
                         let factor = true;
@@ -48,6 +54,7 @@ function searchForChampion(){
                                 body: JSON.stringify(championToSave)
                             }).then(response => {
                                 if (response.status === 200) {
+                                    fetchChamps()
                                 } else {
                                     console.log(response.status);
                                 }
@@ -65,13 +72,10 @@ function addChampionToDiv(champion){
     selectChampionToDiv.innerHTML =`
 <div class="champion-card">
     <div class="champion-header">
-     <img src="${championImageUrlFirst}${champion.name}${championImageUrlSecond}">
+     <img src="${championImageUrlFirst}${champion.championImageName}${championImageUrlSecond}">
     <h1>${champion.name}</h1>
     <h2>Title: ${champion.championTitle}</h2>
     <h3>Resource: ${champion.championParType}</h3>
-    <h4>${champion.championComment}</h4>
-    
-    <div class="edit-button"><button id="edit-champion-button-${champion.id}"">Edit Champion Comment</button></div>
    </div>`
 
     championDiv.appendChild(selectChampionToDiv);
