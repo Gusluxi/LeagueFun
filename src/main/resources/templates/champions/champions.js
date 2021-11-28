@@ -73,6 +73,7 @@ function addChampionToDiv(champion){
     
     <div class="edit-button"><button id="edit-champion-button-${champion.id}"">Edit Champion Comment</button></div>
    </div>`
+
     championDiv.appendChild(selectChampionToDiv);
 }
 
