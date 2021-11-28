@@ -25,6 +25,24 @@ public class Match {
     private String gameType;
 
     @Column
+    private int kills;
+
+    @Column
+    private int deaths;
+
+    @Column
+    private int assists;
+
+    @Column
+    private int minionKills;
+
+    @Column
+    private int championLevel;
+
+    @Column
+    private String championName;
+
+    @Column
     private int teammateSaltLevel;
 
     @Column

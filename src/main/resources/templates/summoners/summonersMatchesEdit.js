@@ -4,8 +4,8 @@ function constructMatchDiv(divElement, match){
     let localMatchFound;
     let chosenParticipant;
     let gameResult;
-    let teamOneColor = "red";
-    let teamTwoColor = "red";
+    let teamOneColor = "#ba2200";
+    let teamTwoColor = "#ba2200";
 
     const savedMatchDiv = document.createElement("div");
 
@@ -36,14 +36,14 @@ function constructMatchDiv(divElement, match){
     <div class="single-match-card">
     <div class="match-info-wrapper">
         <h1>${gameResult}</h1>
-        <h3>
+        <h4>
         Gametype ${match.info.gameMode}<br>
         Gametime ${Math.floor(match.info.gameDuration/60)}.${match.info.gameDuration-Math.floor(match.info.gameDuration/60)*60}
-        </h3>
+        </h4>
     </div>
     <div class="player-info-wrapper">
         <img src="${championImageUrlFirst}${chosenParticipant.championName}${championImageUrlSecond}">
-        <p>${chosenParticipant.championName} - Level: ${chosenParticipant.champLevel}</p>
+        <p>${chosenParticipant.championName} lvl:${chosenParticipant.champLevel}</p>
         <p>K / D / A</p>
         <p>${chosenParticipant.kills} / ${chosenParticipant.deaths} / ${chosenParticipant.assists}</p>
         <p>Minions: ${chosenParticipant.totalMinionsKilled}</p>
@@ -97,21 +97,21 @@ function showMatchForm(match, chosenParticipant, localMatchFound) {
     const savedMatchesDiv = document.getElementById("match-saving-"+match.metadata.matchId);
     if (!localMatchFound) {
         savedMatchesDiv.innerHTML = `
-            <textarea id="add-comment-${match.metadata.matchId}" cols="40" rows="4" placeholder="Game Comment"></textarea><br><br>
+            <textarea class="textarea-input" id="add-comment-${match.metadata.matchId}" cols="40" rows="4" placeholder="Game Comment"></textarea><br>
             <input id="add-salt-level-${match.metadata.matchId}" type="range" min="0" max="100" value="50"/>
-            <p>Tilt Level: <span id="slider-output-${match.metadata.matchId}"></span>% 
-            <button id="update-saved-matches-${match.metadata.matchId}"">✅</button>
-            <button id="cancel-update-${match.metadata.matchId}">✖</button>
-            </p>
+            <div>Teammates Tilt Level: <span id="slider-output-${match.metadata.matchId}"></span>% 
+            <button class="confirm-button" id="update-saved-matches-${match.metadata.matchId}"">Save</button>
+            <button class="confirm-button" id="cancel-update-${match.metadata.matchId}">Cancel</button>
+            </div>
         `;
     } else {
         savedMatchesDiv.innerHTML = `
-            <textarea id="add-comment-${match.metadata.matchId}" cols="40" rows="4" placeholder="Game Comment" value="${escapeHTML(localMatchFound.gameComment)}">${escapeHTML(localMatchFound.gameComment)}</textarea><br><br>
+            <textarea class="textarea-input" id="add-comment-${match.metadata.matchId}" cols="44" rows="4" maxlength="200" placeholder="Game Comment" value="${escapeHTML(localMatchFound.gameComment)}">${escapeHTML(localMatchFound.gameComment)}</textarea><br>
             <input id="add-salt-level-${match.metadata.matchId}" type="range" min="0" max="100" value="${escapeHTML(localMatchFound.teammateSaltLevel.toString())}"/>
-            <p>Tilt Level: <span id="slider-output-${match.metadata.matchId}"></span>% 
-            <button id="update-saved-matches-${match.metadata.matchId}"">✅</button>
-            <button id="cancel-update-${match.metadata.matchId}">✖</button>
-            </p>
+            <div>Teammates Tilt Level: <span id="slider-output-${match.metadata.matchId}"></span>% 
+            <button class="confirm-button" id="update-saved-matches-${match.metadata.matchId}"">Save</button>
+            <button class="confirm-button" id="cancel-update-${match.metadata.matchId}">Cancel</button>
+            </div>
         `;
     }
     let saltSlider = document.getElementById(`add-salt-level-${match.metadata.matchId}`)
@@ -143,6 +143,12 @@ function saveToDatabase(match, chosenSummoner, localMatchFound, dataDiv) {
             matchId: localMatchFound.matchId,
             matchWon: chosenSummoner.win,
             gameType: match.info.gameMode,
+            kills: chosenSummoner.kills,
+            deaths: chosenSummoner.deaths,
+            assists: chosenSummoner.assists,
+            minionKills: chosenSummoner.totalMinionsKilled,
+            championLevel: chosenSummoner.champLevel,
+            championName: chosenSummoner.championName,
             teammateSaltLevel: document.getElementById("add-salt-level-"+localMatchFound.matchId).value,
             gameComment: document.getElementById("add-comment-"+localMatchFound.matchId).value
         }
@@ -170,12 +176,18 @@ function saveToDatabase(match, chosenSummoner, localMatchFound, dataDiv) {
             matchId: match.metadata.matchId,
             matchWon: chosenSummoner.win,
             gameType: match.info.gameMode,
+            kills: chosenSummoner.kills,
+            deaths: chosenSummoner.deaths,
+            assists: chosenSummoner.assists,
+            minionKills: chosenSummoner.totalMinionsKilled,
+            championLevel: chosenSummoner.champLevel,
+            championName: chosenSummoner.championName,
             teammateSaltLevel: document.getElementById("add-salt-level-"+match.metadata.matchId).value,
             gameComment: document.getElementById("add-comment-"+match.metadata.matchId).value
         }
         console.log(matchToAdd);
 
-        fetch(localurl+"/matches", {
+        fetch(localurl+"/matches/"+summonerId, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"

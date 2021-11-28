@@ -1,5 +1,5 @@
 const summonerDiv = document.getElementById("summoner-wrapper");
-const searchSummonerInput = document.getElementById("summoner-name");
+const searchSummonerInput = document.getElementById("summoner-name-input");
 
 fetch(localurl + "/summoners")
     .then(response => response.json())
@@ -17,11 +17,10 @@ function addSummonerToDiv(summoner){
 function constructSummoner(divElement, summoner){
     divElement.innerHTML = `
     <div class="summoner-card">
-    <b>Summoner: </b>
+    <b>Summoner:</b>
     
     <div class="summoner-name"><a href="./summonersMatches.html?summonerId=${summoner.id}">${escapeHTML(summoner.name)}</a></div>
-    
-    <button onclick="deleteSummoner(${summoner.id})">❌</button>
+    <span><a class="delete-button" onclick="deleteSummoner(${summoner.id})"></a></span>
     </div>`;
 }
 

@@ -1,5 +1,5 @@
 .single-match-card {
-    background-color: #c5ded2;
+    background-color: #d0d0d0;
     margin: 10px;
     padding: 10px;
     display: flex;
@@ -48,14 +48,15 @@
 .team-two-kda {
     text-align:left;
     width: 100px;
+    padding-right: 40px;
 }
 
 .team-splitter {
     background-color: darkslategrey;
     height: 90%;
     width: 3px;
-    margin-right: 50px;
-    margin-left: 20px;
+    margin-right: 35px;
+    margin-left: 35px;
 
 }
 
@@ -63,8 +64,42 @@
 .local-match-saving {
     flex-grow:1;
     max-width: 400px;
-}
-.edit-button {
-    float: right;
+    margin-top: 10px;
 }
 
+.edit-button {
+    width:225px;
+}
+.edit-button button {
+    margin-top:20px;
+    float: right;
+    flex-grow: 1;
+    width:150px;
+    height: 50px;
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 0.8em;
+    border: 3px solid #697378;
+    background-color: #e8e8e8;
+}
+
+.edit-button button:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}
+.textarea-input {
+    background-color: #e8e8e8;
+    margin-top: 20px;
+}
+.confirm-button  {
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 1em;
+    border: 3px solid #697378;
+    background-color: #e8e8e8;
+}
+
+.confirm-button:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
+}

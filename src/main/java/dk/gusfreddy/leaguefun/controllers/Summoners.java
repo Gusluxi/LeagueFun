@@ -1,6 +1,9 @@
 package dk.gusfreddy.leaguefun.controllers;
 
+import dk.gusfreddy.leaguefun.models.Match;
 import dk.gusfreddy.leaguefun.models.Summoner;
+import dk.gusfreddy.leaguefun.repositories.ChampionRepository;
+import dk.gusfreddy.leaguefun.repositories.MatchRepository;
 import dk.gusfreddy.leaguefun.repositories.SummonerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +13,12 @@ public class Summoners {
 
     @Autowired
     SummonerRepository summoners;
+
+    @Autowired
+    MatchRepository matches;
+
+    @Autowired
+    ChampionRepository champions;
 
     @GetMapping("/summoners")
     public Iterable<Summoner> getSummoners() {
@@ -56,6 +65,8 @@ public class Summoners {
 
     @DeleteMapping("/summoners/{id}")
     public void deleteSummonerById(@PathVariable Long id) {
+        Iterable<Match> matchesToDelete = matches.findMatchesBySummonerId(id);
+        matches.deleteAll(matchesToDelete);
         summoners.deleteById(id);
     }
 

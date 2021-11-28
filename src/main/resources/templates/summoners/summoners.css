@@ -1,15 +1,107 @@
-.summoner-card {
-    display: flex;
-    font-size: 1.9em;
-    margin: 10px;
+
+.search-bar {
+    width: 30%;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#summoner-name-input {
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 0.8em;
+}
+
+#search-for-summoner {
+    font-family: ejaVu Sans Mono, monospace;
+    font-size: 0.8em;
+    border: 3px solid #697378;
+    background-color: #e8e8e8;
+}
+#search-for-summoner:hover {
+    cursor: pointer;
+    color: black;
+    text-decoration: underline;
 }
 
 #summoner-wrapper {
-    margin:50px;
-    background-color: #c5ded2;
+    width: 60%;
+    margin: auto;
+    padding: 5px;
+    background-color: #697378;
 }
 
-.summoner-name {
-    margin-left: 5px;
-    width: 200px;
+.summoner-card {
+    display: flex;
+    font-size: 1.6em;
+    margin: 5px;
+    width:auto;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    overflow: auto;
+    color:#d0d0d0;
+    padding: 5px;
+    line-height: 2.15em;
 }
+
+
+.summoner-name {
+    margin-left: 10px;
+    width: 400px;
+    flex-grow:1;
+}
+a:link, a:visited {
+    color:#d0d0d0;
+    text-decoration: none;
+}
+a:hover, a:active {
+    text-decoration: underline;
+}
+
+span {
+    flex-grow:1;
+    float:right;
+    position: relative;
+    display: inline-flex;
+    height: 60px;
+    perspective: 1000px;
+}
+
+span a{
+    font-size: 19px;
+    letter-spacing: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform .25s;
+    font-family: 'Montserrat', sans-serif;
+
+}
+span a:before,
+span a:after{
+    position: absolute;
+    content: "Delete Summoner";
+    height: 55px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid #d0d0d0;
+
+    background-color: #697378;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+span a:before{
+    color: #383d40;
+    background: #d0d0d0;
+    transform: rotateY(0deg) translateZ(25px);
+}
+span a:after{
+    color: #d0d0d0;
+    transform: rotateX(90deg) translateZ(25px);
+}
+span a:hover{
+    transform: translateZ(-25px) rotateX(-90deg);
+}
+
