@@ -1,0 +1,8 @@
+.champion-card{
+    display:flex;
+    width: 300px;
+}
+
+.champion-header{
+    flex-grow:1;
+}

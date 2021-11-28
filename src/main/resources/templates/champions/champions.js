@@ -31,7 +31,7 @@ function searchForChampion(){
                         const champData = Object.values(champion.data)
                         const championToSave = {
                             championId: champData[0].key,
-                            name: champData[0].name,
+                            name: champData[0].id,
                             championTitle: champData[0].title,
                             championParType: champData[0].partype
                         }
@@ -62,8 +62,17 @@ function searchForChampion(){
 function addChampionToDiv(champion){
     const selectChampionToDiv = document.createElement("div");
     selectChampionToDiv.id=champion.id;
-    selectChampionToDiv.innerHTML = `
-    `
+    selectChampionToDiv.innerHTML =`
+<div class="champion-card">
+    <div class="champion-header">
+     <img src="${championImageUrlFirst}${champion.name}${championImageUrlSecond}">
+    <h1>${champion.name}</h1>
+    <h2>Title: ${champion.championTitle}</h2>
+    <h3>Resource: ${champion.championParType}</h3>
+    <h4>${champion.championComment}</h4>
+    
+    <div class="edit-button"><button id="edit-champion-button-${champion.id}"">Edit Champion Comment</button></div>
+   </div>`
     championDiv.appendChild(selectChampionToDiv);
 }
 
